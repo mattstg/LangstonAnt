@@ -7,7 +7,7 @@ public class GV : MonoBehaviour {
     public enum Cardinal { North, East, South, West }
 
     public static readonly int numOfColors = 50;
-    public static readonly Vector2 worldSize = new Vector2(1024, 576) * .5f;
+    public static readonly Vector2 worldSize = new Vector2(1024, 576) * .75f;
     public static List<Color> activeColors = new List<Color>();
     public static bool deleteMode = true;
 

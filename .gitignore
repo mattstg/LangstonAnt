@@ -23,8 +23,10 @@ bld/
 [Ll]og/
 
 #unity ones
-Library/
-Builds/
+[Ll]ibrary/*
+[Ll]ibrary/UnityAssemblies/*
+[Bb]uilds/
+[Tt]emp/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -86,6 +88,8 @@ ipch/
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
+*.csproj
+*.sln
 
 # Visual Studio profiler
 *.psess
