@@ -23,8 +23,7 @@ bld/
 [Ll]og/
 
 #unity ones
-[Ll]ibrary/*
-[Ll]ibrary/UnityAssemblies/*
+[Ll]ibrary/
 [Bb]uilds/
 [Tt]emp/
 
