@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Board : MonoBehaviour {
 
+    public int updatesPerCycle = 1;
+    public bool allSpawnCenter = false;
     public bool deleteMode = true;
     List<Ant> ants = new List<Ant>();
     Pixel[,] board = new Pixel[(int)GV.worldSize.x, (int)GV.worldSize.y];
@@ -24,13 +26,23 @@ public class Board : MonoBehaviour {
         Vector2 lastPos = new Vector2(GV.worldSize.x / 2, GV.worldSize.y / 2);
         for (int i = 0; i < GV.numOfColors; i++)
         {
-            Vector2 startPos = new Vector2(Random.Range(0, (int)GV.worldSize.x), Random.Range(0, (int)GV.worldSize.y));
-            //Vector2 offset = new Vector2(Random.Range(-1, (int)2), Random.Range(-1, (int)2));
-            Ant ant = new Ant(GV.activeColors[i], startPos, this);
-            ants.Add(ant);
-            //lastPos = lastPos + offset;
+            if (allSpawnCenter)
+            {
+                Vector2 offset = new Vector2(Random.Range(-1, (int)2), Random.Range(-1, (int)2));
+                Ant ant = new Ant(GV.activeColors[i], lastPos + offset, this);
+                ants.Add(ant);
+                lastPos = lastPos + offset;
+            }
+            else
+            {
+                Vector2 startPos = new Vector2(Random.Range(0, (int)GV.worldSize.x), Random.Range(0, (int)GV.worldSize.y));
+                Ant ant = new Ant(GV.activeColors[i], startPos, this);
+                ants.Add(ant);
+            }
         }
     }
+
+    
 
     public Color GetColor(Vector2 v2)
     {
@@ -63,8 +75,9 @@ public class Board : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        foreach (Ant ant in ants)
-            ant.Update();
+        for(int i = 0; i < updatesPerCycle; i++)
+            foreach (Ant ant in ants)
+                ant.Update();
 	}
 
     public void AddRandomColor()
